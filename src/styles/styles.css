@@ -4,12 +4,30 @@
     border: border-box;
 }
 
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden; 
+}
+
 body{
     background-image: url("../assets/coolbg.png");
     background-size: cover;
+    background-repeat: no-repeat;
+    height: 100vh;
 }
 
 .header{
     height: 4rem;
-    border-bottom: 2px solid black;
+    font-size: 4vw;
+    font-weight: bolder;
+    padding-left: 3vw;
+    padding-top: 2vh;
+    padding-bottom: 2vh;
+    color: #333333;
+}
+
+.leftContentDiv{
+    height: 100vh;
 }
