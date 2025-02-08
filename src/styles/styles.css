@@ -12,7 +12,7 @@ html, body {
 }
 
 body{
-    background-image: url("../assets/coolbg.png");
+    background-image: url("../assets/coolbg2.png");
     background-size: cover;
     background-repeat: no-repeat;
     height: 100vh;
@@ -25,9 +25,44 @@ body{
     padding-left: 3vw;
     padding-top: 2vh;
     padding-bottom: 2vh;
-    color: #333333;
+}
+
+.mainContent{
+    display: flex;
+
 }
 
 .leftContentDiv{
     height: 100vh;
+    width:20vw;
+    background-color: #FFB74D;
+    border: 2px solid black;  
+}
+.optionsDiv{
+    height: 40vh;
+    border-bottom: 1px solid black;
+    background-color: #FFB74D;      
+    display: flex;
+    flex-direction: column;
+}
+
+.optionsDivBtn{
+    margin: 1vh;
+    padding: 1.5vh;
+    background-color: #FFB74D;
+    border: none;
+    font-weight: bold;
+}
+
+.optionsDivBtn:hover{
+    background-color: white;
+    border-radius: 20%;
+}
+
+.rightContentDiv{
+    margin-left: 2vw;
+    border: 2px solid black;
+    height: 100vh;
+    width: 78vw;
+    background-color: #FFB74D;
 }
