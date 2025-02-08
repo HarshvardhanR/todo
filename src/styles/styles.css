@@ -40,7 +40,6 @@ body{
 }
 .optionsDiv{
     height: 40vh;
-    border-bottom: 1px solid black;
     background-color: #FFB74D;      
     display: flex;
     flex-direction: column;
@@ -57,6 +56,30 @@ body{
 .optionsDivBtn:hover{
     background-color: white;
     border-radius: 20%;
+}
+
+.projectDiv{
+    font-size: 1.4vw;
+    font-weight: bolder;
+    padding-left: 3.5vh;
+    padding-right: 3.5vh;
+    padding-top: 3.5vh;
+    padding-bottom: 1vh;
+    display: flex;
+    justify-content: space-between;
+}
+
+.projectDivBtn{
+    all:unset;
+}
+
+hr {
+    height: 100px;
+    background-color: black;
+    border: 0;
+    height: 0.1vh;
+    width: 18vw;
+    margin-left: 1vw;
 }
 
 .rightContentDiv{
