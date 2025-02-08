@@ -1,0 +1,15 @@
+*{
+    margin: 0;
+    font-family: Arial;
+    border: border-box;
+}
+
+body{
+    background-image: url("../assets/coolbg.png");
+    background-size: cover;
+}
+
+.header{
+    height: 4rem;
+    border-bottom: 2px solid black;
+}
