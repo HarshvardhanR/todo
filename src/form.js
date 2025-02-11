@@ -1,4 +1,4 @@
-export function showTaskForm() {
+export function showTaskForm(projectName) {
     const modal = document.createElement("div");
     modal.classList.add("modal");
 
@@ -22,10 +22,10 @@ export function showTaskForm() {
             <input type="date" id="dueDate" name="dueDate" class="form-input" required>
 
             <label for="project" class="form-label">Project:</label>
-            <input type="text" id="project" name="project" class="form-input" required>
+            <input type="text" id="project" name="project" class="form-input" value="${projectName}" readonly required>
 
             <div class="form-actions">
-                <button type="submit" class="form-button">Add</button>
+                <button type="submit" class="form-button">Add Task</button>
                 <button type="button" class="form-button cancel-button">Cancel</button>
             </div>
         </form>
@@ -36,7 +36,7 @@ export function showTaskForm() {
 
     const form = modal.querySelector(".form");
     form.addEventListener("submit", (event) => {
-        event.preventDefault(); 
+        event.preventDefault();
 
         const taskName = document.getElementById("taskName").value.trim();
         const priority = document.getElementById("priority").value;
@@ -45,7 +45,7 @@ export function showTaskForm() {
 
         if (taskName && dueDate && project) {
             const taskData = { taskName, priority, dueDate, project };
-            const taskEvent = new CustomEvent("taskAdded", { detail: taskData }); // ✅ FIXED event name
+            const taskEvent = new CustomEvent("taskAdded", { detail: taskData });
             document.dispatchEvent(taskEvent);
             modal.remove();
         }
@@ -82,13 +82,12 @@ export function showProjectForm() {
 
     const projectForm = modal.querySelector(".project");
     projectForm.addEventListener("submit", (event) => {
-        event.preventDefault(); 
+        event.preventDefault();
 
         const projectName = document.getElementById("projectName").value.trim();
 
         if (projectName) {
-            const projectData = { projectName };
-            const projectEvent = new CustomEvent("projectAdded", { detail: projectData });
+            const projectEvent = new CustomEvent("projectAdded", { detail: { projectName } });
             document.dispatchEvent(projectEvent);
             modal.remove();
         }

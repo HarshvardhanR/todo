@@ -1,33 +1,31 @@
 import { showTaskForm } from "./form";
 
-const tasks = [];
+export const tasks = [];
 
-function Task(title, priority, dueDate, project) {
+export function Task(title, priority, dueDate, project) {
     this.title = title;
     this.priority = priority;
     this.dueDate = dueDate;
     this.project = project;
 }
 
-document.addEventListener("taskAdded", (event) => {
-    const { taskName, priority, dueDate, project } = event.detail;
-
+export function addTask(taskData) {
+    const { taskName, priority, dueDate, project } = taskData;
     const newTask = new Task(taskName, priority, dueDate, project);
     tasks.push(newTask);
+    return newTask;
+}
 
-    displayTask(newTask);
-});
+export function displayTask(task) {
+    const rightContentDiv = document.querySelector('.rightContentDiv1');
 
-function displayTask(task) {
-    const div = document.querySelector('.rightContentDiv1');
-    const separator = document.querySelector('.rightContentDiv1Para');
-    const task1 = document.createElement("div");
-    const task1Btn = document.createElement("button");
-    task1Btn.classList.add('rightContentDivBtn', 'task');
+    const taskDiv = document.createElement("div");
+    const taskButton = document.createElement("button");
+    taskButton.classList.add('rightContentDivBtn', 'task');
 
     const span0 = document.createElement('span');
-    span0.classList.add =  "fAwesome"
-    span0.innerHTML = '<i class="fa-solid fa-list"></i>'
+    span0.classList.add("fAwesome");
+    span0.innerHTML = '<i class="fa-solid fa-list"></i>';
 
     const span1 = document.createElement('span');
     span1.classList.add("taskTitle");
@@ -42,22 +40,24 @@ function displayTask(task) {
     span3.textContent = task.dueDate;
 
     const span4 = document.createElement('span');
-    span4.classList.add("taskProect");
+    span4.classList.add("taskProject");
     span4.textContent = task.project;
 
-    task1Btn.append(span0);
-    task1Btn.append(span1);
-    task1Btn.append(span2);
-    task1Btn.append(span3);
-    task1Btn.append(span4);
+    taskButton.append(span0, span1, span2, span3, span4);
+    taskDiv.appendChild(taskButton);
+    rightContentDiv.appendChild(taskDiv);
 
-    task1.appendChild(task1Btn);
-
-    div.insertBefore(task1,separator.nextSibling);
-
-    const horLine = document.createElement('hr');
-    horLine.classList.add('hr2');
-    div.insertBefore(horLine, task1.nextSibling);
+    const hr = document.createElement('hr');
+    hr.classList.add('hr2');
+    rightContentDiv.appendChild(hr);
 }
 
-document.querySelector(".rightContentDivBtn").addEventListener("click", showTaskForm);
+document.addEventListener("taskAdded", (event) => {
+    const newTask = addTask(event.detail);
+    displayTask(newTask);
+});
+
+document.querySelector(".rightContentDivBtn").addEventListener("click", () => {
+    const defaultProject = "Demo Project";
+    showTaskForm(defaultProject);
+});
