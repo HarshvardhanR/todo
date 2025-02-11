@@ -57,3 +57,47 @@ export function showTaskForm() {
         modal.remove();
     });
 }
+
+export function showProjectForm(){
+    const modal = document.createElement("div");
+    modal.classList.add("modal");
+
+    const projectContainer = document.createElement("div");
+    projectContainer.classList.add("project-container");
+
+    projectContainer.innerHTML = `
+        <h2 class="project-title">Add New Project</h2>
+        <form class="project">
+            <label for="projectName" class="project-label">Project Name:</label>
+            <input type="text" id="projectName" name="projectName" class="project-input" required>
+
+            <div class="form-actions">
+                <button type="submit" class="form-button">Add</button>
+                <button type="button" class="form-button cancel-button">Cancel</button>
+            </div>
+        </form>
+    `;
+
+    modal.appendChild(projectContainer);
+    document.body.appendChild(modal);
+
+    const project = modal.querySelector(".project");
+    project.addEventListener("submit", (e) => {
+        e.preventDefault(); 
+
+        const projectName = document.getElementById("projectName").value.trim();
+
+        if (projectName) {
+            const projectData = projectName;
+            const e = new CustomEvent("projectAdded", { detail: projectData });
+            document.dispatchEvent(e);
+            modal.remove();
+        }
+    });
+
+    const cancelButton = modal.querySelector(".cancel-button");
+    cancelButton.addEventListener("click", () => {
+        modal.remove();
+    });
+    
+}
