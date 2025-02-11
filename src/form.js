@@ -1,5 +1,4 @@
 export function showTaskForm() {
-    
     const modal = document.createElement("div");
     modal.classList.add("modal");
 
@@ -46,8 +45,8 @@ export function showTaskForm() {
 
         if (taskName && dueDate && project) {
             const taskData = { taskName, priority, dueDate, project };
-            const event = new CustomEvent("taskAdded", { detail: taskData });
-            document.dispatchEvent(event);
+            const taskEvent = new CustomEvent("taskAdded", { detail: taskData }); // ✅ FIXED event name
+            document.dispatchEvent(taskEvent);
             modal.remove();
         }
     });
@@ -58,7 +57,7 @@ export function showTaskForm() {
     });
 }
 
-export function showProjectForm(){
+export function showProjectForm() {
     const modal = document.createElement("div");
     modal.classList.add("modal");
 
@@ -81,16 +80,16 @@ export function showProjectForm(){
     modal.appendChild(projectContainer);
     document.body.appendChild(modal);
 
-    const project = modal.querySelector(".project");
-    project.addEventListener("submit", (e) => {
-        e.preventDefault(); 
+    const projectForm = modal.querySelector(".project");
+    projectForm.addEventListener("submit", (event) => {
+        event.preventDefault(); 
 
         const projectName = document.getElementById("projectName").value.trim();
 
         if (projectName) {
-            const projectData = projectName;
-            const e = new CustomEvent("projectAdded", { detail: projectData });
-            document.dispatchEvent(e);
+            const projectData = { projectName };
+            const projectEvent = new CustomEvent("projectAdded", { detail: projectData });
+            document.dispatchEvent(projectEvent);
             modal.remove();
         }
     });
@@ -99,5 +98,4 @@ export function showProjectForm(){
     cancelButton.addEventListener("click", () => {
         modal.remove();
     });
-    
 }

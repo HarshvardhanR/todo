@@ -74,12 +74,39 @@ body{
     all:unset;
 }
 
+.projectNameDivBtn{
+    width: 18vw;
+    margin-left: 1vw;
+    margin-top: 1vh;
+    background-color: #FFB74D;
+    height: 5vh;
+    border: none;
+    font-size: 1.5vw;
+    font-weight: bold;
+}
+
+.projectNameDivBtn:hover{
+
+    background-color: white;
+    border-radius: 2vh;
+}
+
 .hr1 {
     background-color: black;
     border: 0;
     height: 0.1vh;
     width: 18vw;
     margin-left: 1vw;
+    margin-top: 0.3vh;
+}
+
+.hr3{
+    background-color: black;
+    border: 0;
+    height: 0.1vh;
+    width: 16vw;
+    margin-left: 2vw;
+    margin-top: 0.3vh;
 }
 
 .rightContentDiv{
