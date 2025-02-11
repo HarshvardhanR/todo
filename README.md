@@ -1,3 +1,3 @@
 # Template
 
-Template repository for the npm and webpack configurations
+Todo list from the odin project curriculum
