@@ -1,4 +1,5 @@
 import {displayProject} from "./project"
+import { showTaskForm } from "./form";
 import { displayTask, tasks } from "./tasks";
 
 export function loadInbox() {
@@ -12,6 +13,12 @@ export function loadInbox() {
             <hr class="hr2">
         </div>
     `;
+
+    const addNewTaskButton = divToModify.querySelector('.rightContentDivBtn');
+    addNewTaskButton.addEventListener("click", () => {
+        const defaultProject = "Demo Project"; // Set or retrieve the project name
+        showTaskForm(defaultProject); // Show the task form to add a new task
+    });
 
     tasks.forEach((task) =>{
         displayTask(task);

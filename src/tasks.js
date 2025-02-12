@@ -7,6 +7,7 @@ export function Task(title, priority, dueDate, project) {
     this.priority = priority;
     this.dueDate = dueDate;
     this.project = project;
+    this.completed = false;
 }
 
 export function addTask(taskData) {
@@ -29,20 +30,24 @@ export function displayTask(task) {
     span0.innerHTML = '<i class="fa-solid fa-list"></i>';
 
     const span1 = document.createElement('span');
-    span1.classList.add("taskTitle", "spanner");
+    span1.classList.add("taskTitle");
     span1.textContent = task.title;
 
     const span2 = document.createElement('span');
-    span2.classList.add("taskPriority", "spanner");
+    span2.classList.add("taskPriority");
     span2.textContent = task.priority;
 
     const span3 = document.createElement('span');
-    span3.classList.add("taskDueDate", "spanner");
+    span3.classList.add("taskDueDate");
     span3.textContent = task.dueDate;
 
     const span4 = document.createElement('span');
-    span4.classList.add("taskProject", "spanner");
+    span4.classList.add("taskProject");
     span4.textContent = task.project;
+
+    if (task.completed) {
+        taskButton.style.textDecoration = "line-through";
+    }
 
     taskButton.append(span0, span1, span2, span3, span4);
     taskDiv.appendChild(taskButton);
@@ -69,7 +74,17 @@ document.querySelector('.rightContentDiv').addEventListener("click", (event) => 
     if (event.target && (event.target.classList.contains('tasker') || event.target.classList.contains('spanner'))) {
         const taskButton = event.target.closest('.tasker');
         if (taskButton) {
-            taskButton.style.textDecoration = "line-through";
+            const taskTitle = taskButton.querySelector('.taskTitle').textContent;
+
+            const task = tasks.find(t => t.title === taskTitle);
+            if (task) {
+                task.completed = !task.completed;
+                if (task.completed) {
+                    taskButton.style.textDecoration = "line-through";
+                } else {
+                    taskButton.style.textDecoration = "";
+                }
+            }
         }
     }
 });

@@ -53,6 +53,10 @@ document.body.addEventListener("click", (event) => {
     }
 });
 
+document.querySelector('rightContentDivBtn').addEventListener("click", ()=>{
+    console.log("hii");
+})
+
 function setActiveButton(activeButton) {
     document.querySelectorAll(".optionsDivBtn , .projectNameDivBtn").forEach(bt => {
         bt.style.backgroundColor = "";
