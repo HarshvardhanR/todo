@@ -20,27 +20,28 @@ export function displayTask(task) {
     const rightContentDiv = document.querySelector('.rightContentDiv1');
 
     const taskDiv = document.createElement("div");
+    taskDiv.classList.add('rightContentDiv2');
     const taskButton = document.createElement("button");
-    taskButton.classList.add('rightContentDivBtn', 'task');
+    taskButton.classList.add('rightContentDivBtn', 'tasker');
 
     const span0 = document.createElement('span');
     span0.classList.add("fAwesome");
     span0.innerHTML = '<i class="fa-solid fa-list"></i>';
 
     const span1 = document.createElement('span');
-    span1.classList.add("taskTitle");
+    span1.classList.add("taskTitle", "spanner");
     span1.textContent = task.title;
 
     const span2 = document.createElement('span');
-    span2.classList.add("taskPriority");
+    span2.classList.add("taskPriority", "spanner");
     span2.textContent = task.priority;
 
     const span3 = document.createElement('span');
-    span3.classList.add("taskDueDate");
+    span3.classList.add("taskDueDate", "spanner");
     span3.textContent = task.dueDate;
 
     const span4 = document.createElement('span');
-    span4.classList.add("taskProject");
+    span4.classList.add("taskProject", "spanner");
     span4.textContent = task.project;
 
     taskButton.append(span0, span1, span2, span3, span4);
@@ -57,7 +58,21 @@ document.addEventListener("taskAdded", (event) => {
     displayTask(newTask);
 });
 
-document.querySelector(".rightContentDivBtn").addEventListener("click", () => {
-    const defaultProject = "Demo Project";
-    showTaskForm(defaultProject);
+document.querySelector(".rightContentDiv2").addEventListener("click", (event) => {
+    if (event.target && event.target.classList.contains('rightContentDivBtn')) {
+        const defaultProject = "Demo Project";
+        showTaskForm(defaultProject);
+    }
 });
+
+document.querySelector('.rightContentDiv').addEventListener("click", (event) => {
+    if (event.target && (event.target.classList.contains('tasker') || event.target.classList.contains('spanner'))) {
+        const taskButton = event.target.closest('.tasker');
+        if (taskButton) {
+            taskButton.style.textDecoration = "line-through";
+        }
+    }
+});
+
+
+

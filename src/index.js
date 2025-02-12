@@ -47,9 +47,14 @@ document.querySelector('.compBtn').addEventListener("click", ()=>{
     setActiveButton(document.querySelector('.compBtn'))
 })
 
+document.body.addEventListener("click", (event) => {
+    if (event.target.classList.contains('projectNameDivBtn')) {
+        setActiveButton(event.target);
+    }
+});
 
 function setActiveButton(activeButton) {
-    document.querySelectorAll(".optionsDivBtn").forEach(bt => {
+    document.querySelectorAll(".optionsDivBtn , .projectNameDivBtn").forEach(bt => {
         bt.style.backgroundColor = "";
         bt.style.color = ""
     });
