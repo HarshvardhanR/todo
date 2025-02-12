@@ -9,14 +9,13 @@ document.addEventListener("projectAdded", (event) => {
     displayProject(projectName);
 });
 
-function displayProject(projectName) {
+export function displayProject(projectName) {
     const projectDiv = document.querySelector('.projectNameDiv');
 
     const projectButton = document.createElement('button');
     projectButton.classList.add("projectNameDivBtn");
     projectButton.textContent = projectName;
 
-    // Add a click event listener to the project button
     projectButton.addEventListener("click", () => {
         displayTasksForProject(projectName);
     });
